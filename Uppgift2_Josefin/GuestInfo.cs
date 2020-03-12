@@ -54,7 +54,7 @@ namespace Uppgift2_Josefin
             if (isGroup)
             {
                 Console.WriteLine($"Antal personer: {group.Count}\nTotalsumma: {sum}");
-                //sum = 0;              //funkar inte
+                
             }else
             {
                 Console.WriteLine(priceMessage);
@@ -63,7 +63,8 @@ namespace Uppgift2_Josefin
 
             group.Clear();
             ages.Clear();
-            //sum = 0;          //Lägger bara på summan ändå? Vart?
+            isGroup = true;
+            
 
         }
 
