@@ -16,7 +16,7 @@ namespace Uppgift2_Josefin
             
             
             bool state;
-            Console.WriteLine("Welcome!\nPlease choose an action:\n0 - Quit program\n1 - Age");
+            Console.WriteLine("Welcome!\nPlease choose an action:\n0 - Quit program\n1 - Price\n2 - Group price");
             do
             {
                 //Console.WriteLine(errorMessage);
@@ -35,7 +35,9 @@ namespace Uppgift2_Josefin
                     break;
                 case "1":
                     
-                    guest.GetAge();
+                    guest.GetAge(1);
+                    break;
+                case "2": guest.GetAge(2);
                     break;
                 default: 
                     Console.WriteLine(errorMessage);

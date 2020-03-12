@@ -5,51 +5,83 @@ namespace Uppgift2_Josefin
 {
     internal class GuestInfo
     {
+        enum PriceClasses
+        {
+            youth = 80, senior = 90, regular = 120
+        }
         Inputs Line = new Inputs();
         List<int> group = new List<int>();
         List<int> ages = new List<int>();
-        internal void GetAge()
+        bool isGroup = true;
+        internal void GetAge(int menuCase)
         {
+            string priceMessage="";                 //Händer hela tiden nu? vad gör jag fel?
+            int sum=0;
             
-            //string priceMessage;
-            GetCompany();
+
+            if (menuCase == 1)
+            {
+                isGroup = false;
+            }
+            GetGroupSize();
 
             foreach (int person in group)
             {
                 Console.Write($"{person}. Please write your age: ");
                 ages.Add(Convert.ToInt32(Line.TakeInput()));
-                //Console.WriteLine(person);
+              
             }
-            
-            //Console.Write("Please write your age: ");
-            //int age = Convert.ToInt32(Line.TakeInput());
-            //if (age < 20)
-            //{
-            //    priceMessage = "Ungdomspris: 80kr";
-            //}
-            //else if (age > 64)
-            //{
-            //    priceMessage = "Pensionärspris: 90kr";
-            //}
-            //else
-            //{
-            //    priceMessage = "Standardpris: 120kr";
-            //}
-            //Console.WriteLine(priceMessage);
-           
-            
-            
+            foreach (int age in ages)
+            {
+                if (age < 20)
+                {
+                    priceMessage = "Ungdomspris: 80kr";             //KOLLA UPP om jag vill skriva ut ages + string?
+                    sum += Convert.ToInt32(PriceClasses.youth);
+                }
+                else if (age > 64)
+                {
+                    priceMessage = "Pensionärspris: 90kr";
+                    sum += Convert.ToInt32(PriceClasses.senior);
+                }
+                else
+                {
+                    priceMessage = "Standardpris: 120kr";
+                    sum += Convert.ToInt32(PriceClasses.regular);
+                }
+                            
+            }
+
+            if (isGroup)
+            {
+                Console.WriteLine(sum);
+                //sum = 0;              //funkar inte
+            }else
+            {
+                Console.WriteLine(priceMessage);
+            }
+            //isGroup?  Console.WriteLine(sum): Console.WriteLine(priceMessage); //???
+
+            group.Clear();
+            //sum = 0;          //Lägger bara på summan ändå? Vart?
+
         }
 
-        private void GetCompany()
+        private void GetGroupSize()
         {
-            
-            Console.Write("How many? ");
-            int numberOfPeople = Convert.ToInt32(Line.TakeInput());
-            for (int i = 0; i < numberOfPeople; i++)
+            if (isGroup)
             {
-                group.Add(i + 1);
+                Console.Write("How many? ");
+                int numberOfPeople = Convert.ToInt32(Line.TakeInput());
+                for (int i = 0; i < numberOfPeople; i++)
+                {
+                    group.Add(i + 1);
+                }
             }
+            else
+            {
+                group.Add(1);
+            }
+            
             
         }
     }
