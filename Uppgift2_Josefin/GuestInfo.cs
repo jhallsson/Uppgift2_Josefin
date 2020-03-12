@@ -62,6 +62,7 @@ namespace Uppgift2_Josefin
             //isGroup?  Console.WriteLine(sum): Console.WriteLine(priceMessage); //???
 
             group.Clear();
+            ages.Clear();
             //sum = 0;          //Lägger bara på summan ändå? Vart?
 
         }
