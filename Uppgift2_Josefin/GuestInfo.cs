@@ -27,7 +27,7 @@ namespace Uppgift2_Josefin
 
             foreach (int person in group)
             {
-                Console.Write($"{person}. Please write your age: ");
+                Console.Write($"{person}. Ålder: ");
                 ages.Add(Convert.ToInt32(Line.TakeInput()));
               
             }
@@ -53,7 +53,7 @@ namespace Uppgift2_Josefin
 
             if (isGroup)
             {
-                Console.WriteLine(sum);
+                Console.WriteLine($"Antal personer: {group.Count}\nTotalsumma: {sum}");
                 //sum = 0;              //funkar inte
             }else
             {
@@ -71,7 +71,7 @@ namespace Uppgift2_Josefin
         {
             if (isGroup)
             {
-                Console.Write("How many? ");
+                Console.Write("Hur många? ");
                 int numberOfPeople = Convert.ToInt32(Line.TakeInput());
                 for (int i = 0; i < numberOfPeople; i++)
                 {

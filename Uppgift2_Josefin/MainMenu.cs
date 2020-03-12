@@ -16,7 +16,7 @@ namespace Uppgift2_Josefin
             
             
             bool state;
-            Console.WriteLine("Welcome!\nPlease choose an action:\n0 - Quit program\n1 - Price\n2 - Group price");
+            Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris");
             do
             {
                 //Console.WriteLine(errorMessage);
