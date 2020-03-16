@@ -4,37 +4,29 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace Uppgift2_Josefin
 {
-
     public class MainMenu
     {
         private const string errorMessage = "Wrong input. Try again";
         List<int> group = new List<int>();
         List<int> ages = new List<int>();
         bool isGroup = true;
-        
+
         enum PriceClasses
         {
             youth = 80, senior = 90, regular = 120
         }
-        public MainMenu()
-        {
-            
-        }
+
         public void RunProgram()
         {
             bool state;
             Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris\n3 - Multiplicera text\n4 - Plocka ut tredje ordet");
             do
             {
-                string input = TakeInput();
+                string input = Console.ReadLine();
                 state = CheckInput(input);
             } while (state);
         }
-        public static string TakeInput()
-        {
-            return Console.ReadLine();
-        }
-
+        
         public bool CheckInput(string input)
         {
             bool running = true;
@@ -65,7 +57,7 @@ namespace Uppgift2_Josefin
         internal void SplitInput()
         {
             Console.WriteLine("Skriv din mening: ");
-            string inputText = TakeInput();
+            string inputText = Console.ReadLine();
             string[] words = inputText.Split(" ");
             Console.WriteLine(words[2]);
         }
@@ -84,7 +76,7 @@ namespace Uppgift2_Josefin
             foreach (int person in group)
             {
                 Console.Write($"{person}. Ålder: ");
-                ages.Add(Convert.ToInt32(TakeInput()));
+                ages.Add(Convert.ToInt32(Console.ReadLine()));
 
             }
             foreach (int age in ages)
@@ -145,7 +137,7 @@ namespace Uppgift2_Josefin
         {
             Console.Write("Skriv din text: ");
 
-            TextProp = TakeInput();
+            TextProp = Console.ReadLine();
             Console.Write(TextProp);
         }
         private void GetGroupSize()
@@ -153,7 +145,7 @@ namespace Uppgift2_Josefin
             if (isGroup)
             {
                 Console.Write("Hur många? ");
-                int numberOfPeople = Convert.ToInt32(TakeInput());
+                int numberOfPeople = Convert.ToInt32(Console.ReadLine());
                 for (int i = 0; i < numberOfPeople; i++)
                 {
                     group.Add(i + 1);
