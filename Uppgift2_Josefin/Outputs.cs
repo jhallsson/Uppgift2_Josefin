@@ -4,9 +4,9 @@ using System.Text;
 
 namespace Uppgift2_Josefin
 {
-    class Outputs
+    static class Outputs
     {
-        public void WriteOutText(string text)
+        public static void WriteOutText(string text)
         {
             Console.WriteLine(text);
         }
