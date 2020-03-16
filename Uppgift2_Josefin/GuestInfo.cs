@@ -3,21 +3,24 @@ using System.Collections.Generic;
 
 namespace Uppgift2_Josefin
 {
-    internal class GuestInfo
+    public class GuestInfo
     {
+        Inputs readLine = new Inputs();
+        Outputs writeLine = new Outputs();
         enum PriceClasses
         {
             youth = 80, senior = 90, regular = 120
         }
+        
         Inputs Line = new Inputs();
         List<int> group = new List<int>();
         List<int> ages = new List<int>();
         bool isGroup = true;
         internal void GetAge(int menuCase)
         {
-            string priceMessage="";                 //Händer hela tiden nu? vad gör jag fel?
-            int sum=0;
-            
+            string priceMessage = "";      //Händer hela tiden nu? vad gör jag fel?
+            int sum = 0;
+
 
             if (menuCase == 1)
             {
@@ -29,7 +32,7 @@ namespace Uppgift2_Josefin
             {
                 Console.Write($"{person}. Ålder: ");
                 ages.Add(Convert.ToInt32(Line.TakeInput()));
-              
+
             }
             foreach (int age in ages)
             {
@@ -48,26 +51,56 @@ namespace Uppgift2_Josefin
                     priceMessage = "Standardpris: 120kr";
                     sum += Convert.ToInt32(PriceClasses.regular);
                 }
-                            
+
             }
 
             if (isGroup)
             {
                 Console.WriteLine($"Antal personer: {group.Count}\nTotalsumma: {sum}");
-                
-            }else
+
+            } else
             {
                 Console.WriteLine(priceMessage);
             }
-            //isGroup?  Console.WriteLine(sum): Console.WriteLine(priceMessage); //???
 
             group.Clear();
             ages.Clear();
             isGroup = true;
-            
-
         }
 
+        internal void SplitInput()
+        {
+            Console.WriteLine("Skriv din mening: ");
+            string inputText = readLine.TakeInput();
+            string[] words = inputText.Split(" ");
+            Console.WriteLine(words[2]);
+        }
+
+        private string outPutString;
+        public string TextProp
+        {
+            get
+            {
+                return outPutString;
+            }
+            set {
+                    if (!String.IsNullOrEmpty(value))
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                        int n = i + 1;
+                        outPutString += ($"{n}.{value} ");
+                        }
+                    }
+            }
+        }
+        public void MultiplyText()
+        {
+            Console.Write("Skriv din text: ");
+            
+            TextProp = readLine.TakeInput();
+            Console.Write(TextProp);
+        }
         private void GetGroupSize()
         {
             if (isGroup)
@@ -83,8 +116,8 @@ namespace Uppgift2_Josefin
             {
                 group.Add(1);
             }
-            
-            
+
+
         }
     }
 }

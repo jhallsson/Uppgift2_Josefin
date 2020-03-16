@@ -6,5 +6,10 @@ namespace Uppgift2_Josefin
 {
     class Outputs
     {
+        public void WriteOutText(string text)
+        {
+            Console.WriteLine(text);
+        }
+        
     }
 }

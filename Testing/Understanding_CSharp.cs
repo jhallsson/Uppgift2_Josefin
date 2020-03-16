@@ -31,7 +31,7 @@ namespace Testing
             [TestMethod]
             public void BuildHouse()
             {
-                House bigYellowHouse = new House(2,5, "yellow");
+                House bigYellowHouse = new House(2, "yellow");
                 Assert.IsTrue(bigYellowHouse.floors == 2);
             }
         }

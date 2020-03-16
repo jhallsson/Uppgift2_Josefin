@@ -2,11 +2,11 @@
 
 namespace Uppgift2_Josefin
 {
-    internal class Inputs
+    public class Inputs
     {
         public string TakeInput()
         {
-            
+
             return Console.ReadLine();
         }
     }

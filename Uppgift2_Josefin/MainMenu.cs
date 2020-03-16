@@ -6,6 +6,7 @@ namespace Uppgift2_Josefin
     public class MainMenu
     {
         Inputs readLine = new Inputs();
+        Outputs writeLine = new Outputs();
         GuestInfo guest = new GuestInfo();
         public MainMenu()
         {
@@ -13,13 +14,10 @@ namespace Uppgift2_Josefin
         }
         public void RunProgram()
         {
-            
-            
             bool state;
-            Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris");
+            Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris\n3 - Multiplicera text\n4 - Plocka ut tredje ordet");
             do
             {
-                //Console.WriteLine(errorMessage);
                 string input = readLine.TakeInput();
                 state = CheckInput(input);
             } while (state);
@@ -34,10 +32,13 @@ namespace Uppgift2_Josefin
                     running=false;
                     break;
                 case "1":
-                    
                     guest.GetAge(1);
                     break;
                 case "2": guest.GetAge(2);
+                    break;
+                case "3": guest.MultiplyText();
+                    break;
+                case "4": guest.SplitInput();
                     break;
                 default: 
                     Console.WriteLine(errorMessage);
