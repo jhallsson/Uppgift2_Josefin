@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices.ComTypes;
 
 namespace Uppgift2_Josefin
@@ -7,11 +8,17 @@ namespace Uppgift2_Josefin
     public class MainMenu
     {
         private const string errorMessage = "Wrong input. Try again";
-        static GuestInfo guest = new GuestInfo();
-        GuestInfo guest;
+        List<int> group = new List<int>();
+        List<int> ages = new List<int>();
+        bool isGroup = true;
+        
+        enum PriceClasses
+        {
+            youth = 80, senior = 90, regular = 120
+        }
         public MainMenu()
         {
-            guest = new GuestInfo();
+            
         }
         public void RunProgram()
         {
@@ -37,16 +44,16 @@ namespace Uppgift2_Josefin
                     running = false;
                     break;
                 case "1":
-                    guest.GetAge(1);
+                    GetAge(1);
                     break;
                 case "2":
-                    guest.GetAge(2);
+                    GetAge(2);
                     break;
                 case "3":
-                    guest.MultiplyText();
+                    MultiplyText();
                     break;
                 case "4":
-                    guest.SplitInput();
+                    SplitInput();
                     break;
                 default:
                     Console.WriteLine(errorMessage);
@@ -55,7 +62,6 @@ namespace Uppgift2_Josefin
             }
             return running;
         }
-        private const string errorMessage = "Wrong input. Try again"; //varför måste jag deklarera den längst ner?
         internal void SplitInput()
         {
             Console.WriteLine("Skriv din mening: ");
@@ -63,16 +69,10 @@ namespace Uppgift2_Josefin
             string[] words = inputText.Split(" ");
             Console.WriteLine(words[2]);
         }
-        List<int> group = new List<int>();
-        List<int> ages = new List<int>();
-        bool isGroup = true;
-        enum PriceClasses
-        {
-            youth = 80, senior = 90, regular = 120
-        }
+        
         internal void GetAge(int menuCase)
         {
-            string priceMessage = "";      //Händer hela tiden nu? vad gör jag fel?
+            string priceMessage = "";      
             int sum = 0;
 
             if (menuCase == 1)
@@ -153,7 +153,7 @@ namespace Uppgift2_Josefin
             if (isGroup)
             {
                 Console.Write("Hur många? ");
-                int numberOfPeople = Convert.ToInt32(Inputs.TakeInput());
+                int numberOfPeople = Convert.ToInt32(TakeInput());
                 for (int i = 0; i < numberOfPeople; i++)
                 {
                     group.Add(i + 1);

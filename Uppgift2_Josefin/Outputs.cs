@@ -8,7 +8,7 @@ namespace Uppgift2_Josefin
     {
         public static void WriteOutText(string text)
         {
-            Console.WriteLine(text);
+            
         }
         
     }
