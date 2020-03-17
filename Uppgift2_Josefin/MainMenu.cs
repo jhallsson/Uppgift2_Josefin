@@ -7,9 +7,10 @@ namespace Uppgift2_Josefin
     public class MainMenu
     {
         private const string errorMessage = "Wrong input. Try again";
-        List<int> group = new List<int>();
-        List<int> ages = new List<int>();
-        bool isGroup = true;
+        List<int> groupList = new List<int>();
+        List<int> ageList = new List<int>();
+        public bool isGroup = true;
+        public bool state;
 
         enum PriceClasses
         {
@@ -18,16 +19,17 @@ namespace Uppgift2_Josefin
 
         public void RunProgram()
         {
-            bool state;
+
             Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris\n3 - Multiplicera text\n4 - Plocka ut tredje ordet");
             do
             {
-                string input = Console.ReadLine();
+                Console.Write("\nVälj Kommando: ");
+                string input = Console.ReadLine();      //körs tills input=0
                 state = CheckInput(input);
             } while (state);
         }
-        
-        public bool CheckInput(string input)
+
+        private bool CheckInput(string input)
         {
             bool running = true;
             switch (input)
@@ -36,10 +38,10 @@ namespace Uppgift2_Josefin
                     running = false;
                     break;
                 case "1":
-                    GetAge(1);
+                    GetAge(1);                  //vid en person
                     break;
                 case "2":
-                    GetAge(2);
+                    GetAge(2);                  //Vid sällskap >1
                     break;
                 case "3":
                     MultiplyText();
@@ -48,23 +50,16 @@ namespace Uppgift2_Josefin
                     SplitInput();
                     break;
                 default:
-                    Console.WriteLine(errorMessage);
+                    Console.WriteLine(errorMessage);    //felaktig input - matchar inget menyval
                     break;
 
             }
-            return running;
+            return running;                             //returnerar till state i do-while-loop
         }
-        internal void SplitInput()
+
+        private void GetAge(int menuCase)              //(1 eller 2)
         {
-            Console.WriteLine("Skriv din mening: ");
-            string inputText = Console.ReadLine();
-            string[] words = inputText.Split(" ");
-            Console.WriteLine(words[2]);
-        }
-        
-        internal void GetAge(int menuCase)
-        {
-            string priceMessage = "";      
+            string priceMessage = "";
             int sum = 0;
 
             if (menuCase == 1)
@@ -72,14 +67,27 @@ namespace Uppgift2_Josefin
                 isGroup = false;
             }
             GetGroupSize();
-
-            foreach (int person in group)
+            string instructions;
+            foreach (int person in groupList)
             {
-                Console.Write($"{person}. Ålder: ");
-                ages.Add(Convert.ToInt32(Console.ReadLine()));
+                instructions= $"{person}. Ålder: ";                        //Vill skriva ut ålder: men avbryta om första är fel input
+                InputChecks.StringInput(instructions);
+                if (Int32.TryParse(Console.ReadLine(), out int inputAge))
+                {
 
+                    if (0 <= inputAge)
+                    {
+                        ageList.Add(inputAge);
+                    }
+                    else { Console.Write("Kan ej ta negativ ålder"); }
+                }
+                else { Console.Write(errorMessage); }
             }
-            foreach (int age in ages)
+
+
+            //Vill skriva ut ålder: men avbryta om första är fel input
+
+            foreach (int age in ageList)
             {
                 if (age < 20)
                 {
@@ -101,7 +109,7 @@ namespace Uppgift2_Josefin
 
             if (isGroup)
             {
-                Console.WriteLine($"Antal personer: {group.Count}\nTotalsumma: {sum}");
+                Console.WriteLine($"Antal personer: {groupList.Count}\nTotalsumma: {sum}");
 
             }
             else
@@ -109,9 +117,30 @@ namespace Uppgift2_Josefin
                 Console.WriteLine(priceMessage);
             }
 
-            group.Clear();
-            ages.Clear();
+            groupList.Clear();
+            ageList.Clear();
             isGroup = true;
+        }
+        
+
+        private void GetGroupSize()
+        {
+
+            if (isGroup)
+            {
+                Console.Write("Hur många? ");
+                int numberOfPeople = Convert.ToInt32(Console.ReadLine());
+                for (int i = 0; i < numberOfPeople; i++)
+                {
+                    groupList.Add(i + 1);
+                }
+            }
+            else
+            {
+                groupList.Add(1);
+            }
+            
+            
         }
 
         private string outPutString;
@@ -133,30 +162,23 @@ namespace Uppgift2_Josefin
                 }
             }
         }
-        public void MultiplyText()
+
+        private void MultiplyText()
         {
             Console.Write("Skriv din text: ");
 
             TextProp = Console.ReadLine();
-            Console.Write(TextProp);
+            Console.Write($"{TextProp}\n");
         }
-        private void GetGroupSize()
+        
+        private void SplitInput()
         {
-            if (isGroup)
-            {
-                Console.Write("Hur många? ");
-                int numberOfPeople = Convert.ToInt32(Console.ReadLine());
-                for (int i = 0; i < numberOfPeople; i++)
-                {
-                    group.Add(i + 1);
-                }
-            }
-            else
-            {
-                group.Add(1);
-            }
-
-
+            Console.WriteLine("Skriv din mening: ");
+            string inputText = Console.ReadLine();
+            string[] words = inputText.Split(" ");
+            //words.Length > 3 ? Console.WriteLine(words[2]) : Console.WriteLine("Mindre än tre ord!");
         }
+
+        
     }
 }
