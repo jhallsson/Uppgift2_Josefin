@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CorrectOutput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tryInputs.cs" />
     <Compile Include="Understanding_CSharp.cs" />
   </ItemGroup>
   <ItemGroup>
