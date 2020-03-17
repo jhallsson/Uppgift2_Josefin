@@ -24,25 +24,25 @@ namespace Uppgift2_Josefin
             } while (!validInput);
             return inputText;
         }*/
-        public static int IntInput(int inputText)
+        public static int IntInput(string instructions)
         {
-            bool parseFailed = true;
+            bool parseSucces;
+            int ageAnswer;
             do
             {
-                if (!Int32.TryParse(Console.ReadLine(), out int inputAge))
+                Console.Write(instructions);                                    //vilket input som eftergfrågas
+                parseSucces = Int32.TryParse(Console.ReadLine(), out ageAnswer);   //int omvandling true/false
+                if (!parseSucces)                                                    //tryparse=false
                 {
-                    Console.Write("Must type number");
-                }/*else
-                {
-                    if (0 <= inputAge)
-                    {
-                        ageList.Add(inputAge);
-                    }
-                    else { Console.Write("Kan ej ta negativ ålder"); }
+                    Console.Write("Must type number\n");
 
-                }*/
-            } while (parseFailed);
-            return inputText;
+                }
+            } while (!parseSucces);                                                  //do så länge tryparse inte funkar
+            /*if (ageAnswer <0)
+            {
+                Console.Write("Kan ej ta negativ ålder"); 
+            }*/
+            return ageAnswer;                                                   //när tryparse lyckas skickas inputsvaret
         }
     }
 }

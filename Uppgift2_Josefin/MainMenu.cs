@@ -68,24 +68,21 @@ namespace Uppgift2_Josefin
             }
             GetGroupSize();
             string instructions;
+            int inputAge;
             foreach (int person in groupList)
             {
                 instructions= $"{person}. Ålder: ";                        //Vill skriva ut ålder: men avbryta om första är fel input
-                InputChecks.StringInput(instructions);
-                if (Int32.TryParse(Console.ReadLine(), out int inputAge))
-                {
+                inputAge= InputChecks.IntInput(instructions);               //returnerar input som är parsed
+                                                                            //if (Int32.TryParse(Console.ReadLine(), out int inputAge))
+                                                                            //{
 
-                    if (0 <= inputAge)
-                    {
-                        ageList.Add(inputAge);
-                    }
-                    else { Console.Write("Kan ej ta negativ ålder"); }
-                }
-                else { Console.Write(errorMessage); }
+                //if (0 <= inputAge)
+                //{
+                    ageList.Add(inputAge);
+                //}
+                //else { Console.Write("Kan ej ta negativ ålder"); }
+                
             }
-
-
-            //Vill skriva ut ålder: men avbryta om första är fel input
 
             foreach (int age in ageList)
             {
@@ -110,7 +107,6 @@ namespace Uppgift2_Josefin
             if (isGroup)
             {
                 Console.WriteLine($"Antal personer: {groupList.Count}\nTotalsumma: {sum}");
-
             }
             else
             {
@@ -122,10 +118,8 @@ namespace Uppgift2_Josefin
             isGroup = true;
         }
         
-
         private void GetGroupSize()
         {
-
             if (isGroup)
             {
                 Console.Write("Hur många? ");
@@ -139,8 +133,6 @@ namespace Uppgift2_Josefin
             {
                 groupList.Add(1);
             }
-            
-            
         }
 
         private string outPutString;
@@ -166,7 +158,6 @@ namespace Uppgift2_Josefin
         private void MultiplyText()
         {
             Console.Write("Skriv din text: ");
-
             TextProp = Console.ReadLine();
             Console.Write($"{TextProp}\n");
         }
@@ -178,7 +169,5 @@ namespace Uppgift2_Josefin
             string[] words = inputText.Split(" ");
             //words.Length > 3 ? Console.WriteLine(words[2]) : Console.WriteLine("Mindre än tre ord!");
         }
-
-        
     }
 }
