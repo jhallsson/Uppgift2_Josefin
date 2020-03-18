@@ -35,7 +35,6 @@ namespace Uppgift2_Josefin
                 if (!parseSucces)                                                    //tryparse=false
                 {
                     Console.Write("Must type number\n");
-
                 }
             } while (!parseSucces);                                                  //do så länge tryparse inte funkar
             /*if (ageAnswer <0)

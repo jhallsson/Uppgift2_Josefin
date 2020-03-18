@@ -28,8 +28,8 @@
         }
 
         //3
-        public int Siffra { get; set; }     //Minsta
-
+        public int Siffra { get; set; }     //Minsta - autoproperty - två metodanrop
+                                            //har ett bakomliggande fält - måste det ändras måste man skriva ut fältet (som i 2)
 
         public Car(string regNo)            //Klassens konstruktor. Kör alltid det första som görs med programmet
         {

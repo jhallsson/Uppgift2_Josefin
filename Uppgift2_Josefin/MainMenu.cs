@@ -7,17 +7,17 @@ namespace Uppgift2_Josefin
     public class MainMenu
     {
         private const string errorMessage = "Wrong input. Try again";
-        List<int> groupList = new List<int>();
+        List<int> groupList = new List<int>();      //private default
         List<int> ageList = new List<int>();
-        public bool isGroup = true;
-        public bool state;
-
-        enum PriceClasses
-        {
+        public bool isGroup = true;             //kapsla in beteenden, privetisera 
+        public bool state;                  //behöver inte vara global används bara i runprogram
+                                            //ska inte användas utanför
+        enum PriceClasses                   //private default? kan ligga i egen fil (men här används bara i mainmenu)
+        {                                   //ligger som egen "klass", inte i klass
             youth = 80, senior = 90, regular = 120
         }
 
-        public void RunProgram()
+        public void RunProgram()        //bra
         {
 
             Console.WriteLine("Välkommen!\nVal:\n0 - Avsluta program\n1 - Pris\n2 - Gruppris\n3 - Multiplicera text\n4 - Plocka ut tredje ordet");
@@ -37,7 +37,7 @@ namespace Uppgift2_Josefin
                 case "0":
                     running = false;
                     break;
-                case "1":
+                case "1":                       //byt metodnamn ex bool company, ta bort isgroup, skippa magisk siffra
                     GetAge(1);                  //vid en person
                     break;
                 case "2":
@@ -118,7 +118,7 @@ namespace Uppgift2_Josefin
             isGroup = true;
         }
         
-        private void GetGroupSize()
+        private void GetGroupSize()     //bryt ut logik för uträkning av priser sen kalla på groupsize
         {
             if (isGroup)
             {
@@ -136,20 +136,20 @@ namespace Uppgift2_Josefin
         }
 
         private string outPutString;
-        public string TextProp
-        {
-            get
+        public string TextProp              //hur man hanterar innehållet innanför och utanför klass
+        {                                   //textprop metod istället när det används i samma klass
+            get                             //klass-hus property-dörr (kommer in i klassen/byter dörren)
             {
-                return outPutString;
+                return outPutString;        //isf deklarera i 
             }
             set
             {
-                if (!String.IsNullOrEmpty(value))
+                if (!String.IsNullOrEmpty(value))       //metodanrop med värde ist och returnera ex. string
                 {
                     for (int i = 0; i < 10; i++)
                     {
                         int n = i + 1;
-                        outPutString += ($"{n}.{value} ");
+                        outPutString += ($"{n}.{value} "); //vill inte skapa ny string i varje loopning "immutable string"
                     }
                 }
             }
@@ -167,7 +167,10 @@ namespace Uppgift2_Josefin
             Console.WriteLine("Skriv din mening: ");
             string inputText = Console.ReadLine();
             string[] words = inputText.Split(" ");
-            //words.Length > 3 ? Console.WriteLine(words[2]) : Console.WriteLine("Mindre än tre ord!");
-        }
+            string s = words.Length > 3 ? words[2] : "Mindre än tre ord!"; //båda val måste vara sträng/int/annat/samma
+            Console.WriteLine(s);
+        }   
+        //måste få tillbaka ett resultat 
+        //returnera två strängvärden
     }
 }
